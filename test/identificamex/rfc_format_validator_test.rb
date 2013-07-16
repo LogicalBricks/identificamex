@@ -3,56 +3,90 @@ require_relative '../empleado'
 
 describe 'rfc validator' do
 
+  def model(options)
+    Empleado.new(options)
+  end
+
+  def model_homoclave(options)
+    EmpleadoHomoclave.new(options)
+  end
+
   describe 'with valid data' do
-    it 'accepts rfc (compl.must_be)' do
-      Empleado.new(rfc: 'AEIO111111AEI').must_be :valid?
+    it 'accepts rfc (completo)' do
+      model(rfc: 'AEIO111111AEI').must_be :valid?
     end
 
-    it 'accepts rfc (con 3 caracteres para el nombre)' do
-      Empleado.new(rfc: 'AEI111111AEI').must_be :valid?
+    it 'accepts rfc (con 3 carácteres para el nombre)' do
+      model(rfc: 'AEI111111AEI').must_be :valid?
     end
 
     it 'accepts rfc (sin homoclave)' do
-      Empleado.new(rfc: 'AEIO111111').must_be :valid?
+      model(rfc: 'AEIO111111').must_be :valid?
     end
 
-    it 'accepts rfc (sin homoclave y con 3 caracteres para el nombre)' do
-      Empleado.new(rfc: 'AEI111111').must_be :valid?
+    it 'accepts rfc (sin homoclave y con 3 carácteres para el nombre)' do
+      model(rfc: 'AEI111111').must_be :valid?
     end
 
-    it 'accepts rfc (d.must_bes de nombre con Ñ)' do
-      Empleado.new(rfc: 'ÑAEI111111AEI').must_be :valid?
+    it 'accepts rfc (datos de nombre con Ñ)' do
+      model(rfc: 'ÑAEI111111AEI').must_be :valid?
     end
 
-    it 'accepts rfc (d.must_bes de nombre con &)' do
-      Empleado.new(rfc: 'A&O111111AEI').must_be :valid?
+    it 'accepts rfc (datos de nombre con &)' do
+      model(rfc: 'A&O111111AEI').must_be :valid?
     end
+
+    describe 'force homoclave' do
+      it 'accepts rfc (4 carácteres para el nombre, sin homoclave)' do
+        model_homoclave(rfc: 'AEIO111111').wont_be :valid?
+      end
+
+      it 'accepts rfc (3 carácteres para el nombre, sin homoclave)' do
+        model_homoclave(rfc: 'AEI111111').wont_be :valid?
+      end
+    end # describe force homoclave
+
   end # with valid data
 
   describe 'with invalid data' do
-    it 'refuses rfc (nombre con dig.must_be en lugar de letra)' do
-      Empleado.new(rfc: '9AEI111111').wont_be :valid?
+    it 'refuses rfc (nombre con dígito en lugar de letra)' do
+      model(rfc: '9AEI111111').wont_be :valid?
     end
 
-    it 'refuses rfc (caracter invalido)' do
-      Empleado.new(rfc: 'A*OU111111').wont_be :valid?
+    it 'refuses rfc (carácter inválido)' do
+      model(rfc: 'A*OU111111').wont_be :valid?
     end
 
-    it 'refuses rfc (falta un dig.must_be en la fecha)' do
-      Empleado.new(rfc: 'AEIO11111').wont_be :valid?
+    it 'refuses rfc (falta un dígito en la fecha)' do
+      model(rfc: 'AEIO11111').wont_be :valid?
     end
 
-    it 'refuses rfc (falta un caracter en los d.must_bes del nombre)' do
-      Empleado.new(rfc: 'AE111111').wont_be :valid?
+    it 'refuses rfc (falta un carácter en los datos del nombre)' do
+      model(rfc: 'AE111111').wont_be :valid?
     end
 
-    it 'refuses rfc (el dia es invalido 42)' do
-      Empleado.new(rfc: 'AEIO111142').wont_be :valid?
+    it 'refuses rfc (el día es inválido, 42)' do
+      model(rfc: 'AEIO111142').wont_be :valid?
     end
 
-    it 'refuses rfc (el mes es invaido 25)' do
-      Empleado.new(rfc: 'AEIO112511').wont_be :valid?
+    it 'refuses rfc (el mes es inváido, 25)' do
+      model(rfc: 'AEIO112511').wont_be :valid?
     end
+
+    it 'refuses rfc (homoclave incompleta)' do
+      model(rfc: 'AEIO111111A').wont_be :valid?
+    end
+
+    describe 'force homoclave' do
+      it 'refuses rfc (4 carácteres para el nombre, sin homoclave)' do
+        model_homoclave(rfc: 'AEIO111111').wont_be :valid?
+      end
+
+      it 'refuses rfc (3 carácteres para el nombre, sin homoclave)' do
+        model_homoclave(rfc: 'AEI111111').wont_be :valid?
+      end
+    end # describe force homoclave
+
   end # with invalid data
 
 end

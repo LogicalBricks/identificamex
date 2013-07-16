@@ -6,5 +6,3 @@ class CurpFormatValidator < ActiveModel::EachValidator
     end
   end
 end
-
-
