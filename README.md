@@ -25,7 +25,7 @@ Agrega las validaciones de formato a los campos correspondientes.
 ```ruby
 class Employee < ActiveRecor::Base
   validates :curp, presence: true, curp_format: true
-  validates :rfc, rfc_format: true, allow_blank: true
+  validates :rfc, rfc_format: { force_homoclave: true }, allow_blank: true
 end
 ```
 
