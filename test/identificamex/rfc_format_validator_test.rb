@@ -37,12 +37,12 @@ describe 'rfc validator' do
     end
 
     describe 'force homoclave' do
-      it 'accepts rfc (4 carácteres para el nombre, sin homoclave)' do
-        model_homoclave(rfc: 'AEIO111111').wont_be :valid?
+      it 'accepts rfc (4 carácteres para el nombre, con homoclave)' do
+        model_homoclave(rfc: 'AEIO111111AEI').must_be :valid?
       end
 
-      it 'accepts rfc (3 carácteres para el nombre, sin homoclave)' do
-        model_homoclave(rfc: 'AEI111111').wont_be :valid?
+      it 'accepts rfc (3 carácteres para el nombre, con homoclave)' do
+        model_homoclave(rfc: 'AEI111111AEI').must_be :valid?
       end
     end # describe force homoclave
 

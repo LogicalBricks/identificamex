@@ -1,7 +1,11 @@
 # Identificamex
 
-Gema con validadores para los formatos de la Clave Única de Registro de Población (CURP) y el Registro Federal de Contribuyentes (RFC) utilizados en México.
-Los validadores se integran con el mecanismo que implementa ActiveModel para el resto de validadores de Rails.
+Gema con validadores para los formatos de la Clave Única de Registro de
+Población (CURP) y el Registro Federal de Contribuyentes (RFC) utilizados en
+México.
+
+Los validadores se integran con el mecanismo que implementa ActiveModel
+para el resto de validadores de Rails.
 
 ## Instalación
 
@@ -20,7 +24,6 @@ O instálala por ti mismo de esta manera:
 ## Uso
 
 Agrega las validaciones de formato a los campos correspondientes.
-
 
 ```ruby
 class Employee < ActiveRecor::Base
