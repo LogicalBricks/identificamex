@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/logicalbricks/identificamex.png)](https://travis-ci.org/logicalbricks/identificamex)
+[![Build Status](https://travis-ci.org/LogicalBricks/identificamex.png)](https://travis-ci.org/LogicalBricks/identificamex)
 
 
 # Identificamex
