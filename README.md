@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/logicalbricks/identificamex.png)](https://travis-ci.org/logicalbricks/identificamex)
+
+
 # Identificamex
 
 Gema con validadores para los formatos de la Clave Única de Registro de
