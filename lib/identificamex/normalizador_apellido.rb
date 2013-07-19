@@ -21,7 +21,7 @@ module Identificamex
     private
 
     def nombres_ignorados
-      %w[DE LA DEL LOS]
+      %w[DE LA DEL LOS Y]
     end
 
   end
