@@ -9,13 +9,13 @@ module Identificamex
   # Ejemplo:
   #
   #     NormalizadorApellido.new('De la Rosa').normalizar
-  #     # = ROSA
+  #     # => ROSA
   #
   #     NormalizadorApellido.new('Del Toro').normalizar
-  #     # = TORO
+  #     # => TORO
   #
   #     NormalizadorApellido.new('Pérez').normalizar
-  #     # = PEREZ
+  #     # => PEREZ
   class NormalizadorApellido < NormalizadorCadena
 
     private
