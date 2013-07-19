@@ -4,6 +4,7 @@ module Identificamex
       return if str.nil?
       str
       .gsub(/[ÁÉÍÓÚÜáéíóúü]/, hash_vocales)
+      .gsub(/[^\w\s]/, '') # se limpia de caracteres especiales
       .upcase
     end
 
