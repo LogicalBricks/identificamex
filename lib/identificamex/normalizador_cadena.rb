@@ -16,13 +16,22 @@ module Identificamex
     end
 
     def normalizar
-      if nombres.count > 1
-        nombre_principal = nombres.find{ |n| !(nombres_ignorados.member?(n)) }
-      end
-      nombre_principal || nombres.first
+      nombre_aceptado || primer_nombre
     end
 
     private
+
+    def nombre_aceptado
+      nombres.find{|nombre| no_ignorado?(nombre) } if nombres.count > 1
+    end
+
+    def no_ignorado?(nombre)
+      !nombres_ignorados.member?(nombre)
+    end
+
+    def primer_nombre
+      nombres.first
+    end
 
     def nombres_ignorados
       raise NotImplementedError
