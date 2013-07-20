@@ -26,8 +26,8 @@ module Identificamex
 
     def initialize(options)
       @nombre_completo  = NombreCompleto.new(options_for_nombre(options))
+      @razon_social     = RazonSocial.new(options[:razon_social])
       @fecha_nacimiento = options[:fecha_nacimiento]
-      @razon_social     = options[:razon_social]
       @fecha_creacion   = options[:fecha_creacion]
     end
 
@@ -40,7 +40,7 @@ module Identificamex
     #=====================
 
     def rfc_generado
-      @razon_social ? rfc_persona_moral : rfc_persona_fisica
+      @razon_social.present? ? rfc_persona_moral : rfc_persona_fisica
     end
 
     def rfc_persona_moral
@@ -53,6 +53,10 @@ module Identificamex
 
     def cuatro_letras_de_nombre
       @nombre_completo.siglas
+    end
+
+    def tres_letras_de_razon_social
+      @razon_social.siglas
     end
 
     def fecha_nacimiento
@@ -75,5 +79,6 @@ module Identificamex
       accepted_keys = %i[nombre primer_apellido segundo_apellido]
       options.reject{|k, v| !(accepted_keys.member?(k)) }
     end
+
   end
 end
