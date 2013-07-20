@@ -25,13 +25,13 @@ module Identificamex
     end # describe #primera_letra_primer_apellido
 
     describe '#primera_vocal_interna_primer_apellido' do
-      describe 'when the word starts with a vowel' do
+      describe 'when the word starts with a consonant' do
         it 'is the first vowel' do
           NombreCompleto.new(primer_apellido: 'RAMIREZ').primera_vocal_interna_primer_apellido.must_equal 'A'
         end
       end
 
-      describe 'when the word starts with a consonant' do
+      describe 'when the word starts with a vowel' do
         it 'is the second vowel' do
           NombreCompleto.new(primer_apellido: 'ANTONIO').primera_vocal_interna_primer_apellido.must_equal 'O'
         end
