@@ -3,6 +3,16 @@ require_relative '../../lib/identificamex/nombre_completo'
 
 module Identificamex
   describe NombreCompleto do
+
+    describe '#to_s' do
+      it 'is (primer apellido segundo apellido y nombre)' do
+        nombre_completo = NombreCompleto.new(nombre: 'Jorge',
+                                             primer_apellido: 'Martínez',
+                                             segundo_apellido: 'López')
+        nombre_completo.to_s.must_equal 'MARTINEZ LOPEZ JORGE'
+      end
+    end
+
     describe '#primera_letra_primer_apellido' do
 
       describe 'when the words have no invalid words' do
@@ -142,8 +152,8 @@ module Identificamex
     describe '#siglas_apellidos_completa?' do
       describe "when siglas apellidos' length is 3" do
         it 'is true' do
-            NombreCompleto.new(primer_apellido: 'LOPEZ', segundo_apellido: 'SANCHEZ')
-            .siglas_apellidos_completa?.must_equal true
+          NombreCompleto.new(primer_apellido: 'LOPEZ', segundo_apellido: 'SANCHEZ')
+          .siglas_apellidos_completa?.must_equal true
         end
       end
 

@@ -48,6 +48,10 @@ module Identificamex
       end
     end
 
+    def to_s
+      "#{@primer_apellido} #{@segundo_apellido} #{@nombre}"
+    end
+
     #=====================
     private
     #=====================
