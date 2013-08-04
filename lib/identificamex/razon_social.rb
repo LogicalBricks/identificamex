@@ -6,39 +6,40 @@ module Identificamex
       @razon_social = mayusculas(razon_social)
     end
 
-    def present?
-      @razon_social.present?
-    end
-
     def siglas
       tres_letras_de_razon_social
+    end
+
+    def to_s
+      @razon_social
     end
 
     private
 
     def tres_letras_de_razon_social
-      palabras = palabras_razon_social[0, 3]
-      if palabras.count == 3
-        siglas_tres_palabras(palabras)
-      elsif palabras.count == 2
-        siglas_dos_palabras(palabras)
-      else
-        siglas_palabra_unica(palabras)
+      case palabras_a_considerar.count
+      when 3 then siglas_tres_palabras
+      when 2 then siglas_dos_palabras
+      else siglas_palabra_unica
       end
     end
 
-    def siglas_tres_palabras(palabras)
-      palabras.map{|l| l[0]}.join
+    def palabras_a_considerar
+      @palabras_a_considerar ||= palabras_razon_social[0, 3]
     end
 
-    def siglas_dos_palabras(palabras)
-      palabras[0][0] + palabras[1][0, 2]
+    def siglas_tres_palabras
+      palabras_a_considerar.map{|l| l[0]}.join
     end
 
-    def siglas_palabra_unica(palabra)
-      s = palabra.first[0, 3]
-      s = s + ("X" * (3 - s.length)) if s.length < 3
-      s
+    def siglas_dos_palabras
+      palabras_a_considerar[0][0] + palabras_a_considerar[1][0, 2]
+    end
+
+    def siglas_palabra_unica
+      letras = palabras_a_considerar.first[0, 3]
+      letras = letras + ("X" * (3 - letras.length)) if letras.length < 3
+      letras
     end
 
     def palabras_razon_social
