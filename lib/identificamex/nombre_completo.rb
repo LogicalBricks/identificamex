@@ -9,6 +9,22 @@ module Identificamex
       @segundo_apellido = normalizar_apellido(params[:segundo_apellido])
     end
 
+    def siglas
+      if siglas_apellidos_completa?
+        siglas_apellidos + primera_letra_nombre
+      else
+        siglas_apellidos + primeras_dos_letras_nombre
+      end
+    end
+
+    def to_s
+      "#{@primer_apellido} #{@segundo_apellido} #{@nombre}"
+    end
+
+    #=====================
+    private
+    #=====================
+
     def primera_letra_primer_apellido
       @primer_apellido[0] if @primer_apellido.present?
     end
@@ -39,22 +55,6 @@ module Identificamex
     def siglas_apellidos_completa?
       siglas_apellidos.length == 3
     end
-
-    def siglas
-      if siglas_apellidos_completa?
-        siglas_apellidos + primera_letra_nombre
-      else
-        siglas_apellidos + primeras_dos_letras_nombre
-      end
-    end
-
-    def to_s
-      "#{@primer_apellido} #{@segundo_apellido} #{@nombre}"
-    end
-
-    #=====================
-    private
-    #=====================
 
     def normalizar_nombre(nombre)
       NormalizadorNombre.new(nombre).normalizar if nombre
