@@ -24,61 +24,52 @@ module Identificamex
   #     # => 'MAJU701213'
   class RfcGenerator
 
-    def initialize(options)
-      @nombre_completo  = NombreCompleto.new(options_for_nombre(options))
-      @razon_social     = RazonSocial.new(options[:razon_social])
-      @fecha_nacimiento = options[:fecha_nacimiento]
-      @fecha_creacion   = options[:fecha_creacion]
+    def initialize(params)
+      @nombre_completo  = build_nombre_completo(params)
+      @razon_social     = build_razon_social(params)
+      @fecha_nacimiento = params[:fecha_nacimiento]
+      @fecha_creacion   = params[:fecha_creacion]
     end
 
     def rfc
-      @rfc ||= rfc_generado
+      @rfc ||= (siglas_rfc_base + siglas_homoclave)
     end
 
     #=====================
     private
     #=====================
 
-    def rfc_generado
-      @razon_social.present? ? rfc_persona_moral : rfc_persona_fisica
+    def build_nombre_completo(params)
+      hash = params_for_nombre(params)
+      i = NombreCompleto.new(hash) if hash.values.any?(&:present?)
     end
 
-    def rfc_persona_moral
-      tres_letras_de_razon_social + fecha_creacion
+    def build_razon_social(params)
+      RazonSocial.new(params[:razon_social]) if params[:razon_social].present?
     end
 
-    def rfc_persona_fisica
-      convertir_palabra_inconveniente(cuatro_letras_de_nombre) + fecha_nacimiento
+    def siglas_rfc_base
+      rfc_base.siglas
     end
 
-    def cuatro_letras_de_nombre
-      @nombre_completo.siglas
+    def siglas_homoclave
+      homoclave.siglas
     end
 
-    def tres_letras_de_razon_social
-      @razon_social.siglas
+    def rfc_base
+      return @rfc_base if @rfc_base
+      nombre = @nombre_completo || @razon_social
+      fecha = @fecha_nacimiento || @fecha_creacion
+      @rfc_base = RfcBase.new(nombre: nombre, fecha_nacimiento: fecha)
     end
 
-    def fecha_nacimiento
-      fecha_string(@fecha_nacimiento.to_date)
+    def homoclave
+      @homoclave ||= Homoclave.new(@rfc_base)
     end
 
-    def fecha_creacion
-      fecha_string(@fecha_creacion.to_date)
-    end
-
-    def fecha_string(fecha)
-      fecha.strftime('%y%m%d')
-    end
-
-    def convertir_palabra_inconveniente(palabra)
-      PalabraInconveniente.convertir(palabra)
-    end
-
-    def options_for_nombre(options)
+    def params_for_nombre(params)
       accepted_keys = %i[nombre primer_apellido segundo_apellido]
-      options.reject{|k, v| !(accepted_keys.member?(k)) }
+      params.reject{|k, v| !(accepted_keys.member?(k)) }
     end
-
   end
 end
