@@ -7,6 +7,7 @@ module Identificamex
       .upcase
       .gsub(/ñ/, 'Ñ')
       .gsub(/,/, '')
+      .gsub(/\./, '')
     end
 
     def hash_vocales
