@@ -1,3 +1,8 @@
+require_relative 'nombre_completo'
+require_relative 'razon_social'
+require_relative 'rfc_base'
+require_relative 'homoclave'
+
 module Identificamex
 
   # Clase responsable de generar un RFC. Recibe el rfc y un `hash` con los

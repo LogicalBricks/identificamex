@@ -1,3 +1,4 @@
+require_relative 'normalizador_nombre'
 require_relative 'normalizador_apellido'
 require_relative 'palabra_inconveniente'
 
