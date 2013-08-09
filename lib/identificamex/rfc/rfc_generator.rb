@@ -13,19 +13,29 @@ module Identificamex
     #
     # Ejemplos:
     #
-    #     validator = RfcGenerator.new(nombre:           'Juan',
+    #     generator = RfcGenerator.new(nombre:           'Juan',
     #                                  primer_apellido:  'Barrios',
     #                                  segundo_apellido: 'Fernández',
     #                                  fecha_nacimiento: Date.new(1970, 12, 13))
-    #     validator.rfc
+    #     generator.rfc
     #     # => 'BAFJ701213'
     #
     #     validator = RfcGenerator.new(nombre:           'Juan',
     #                                  primer_apellido:  'Martínez',
     #                                  segundo_apellido: nil,
     #                                  fecha_nacimiento: Date.new(1970, 12, 13))
-    #     validator.rfc
+    #     generator.rfc
     #     # => 'MAJU701213'
+    #
+    #     generator = RfcGenerator.new(razon_social: 'Sonora Industrial Azucarera, S. de R.L',
+    #                                  fecha_creacion: Date.new(1983, 03, 05))
+    #     generator.rfc
+    #     # => 'SIA8303054L5'
+    #
+    #     generator = RfcGenerator.new(razon_social: 'Los Viajes Internacionales de Marco Polo, S.A.',
+    #                                  fecha_creacion: Date.new(1983, 03, 05))
+    #     generator.rfc
+    #     # => 'VIM8303056B6'
     class RfcGenerator
 
       def initialize(params)
