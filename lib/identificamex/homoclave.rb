@@ -53,13 +53,15 @@ module Identificamex
     end
 
     def suma_letras_rfc(str)
-      str = " " + str if str.length < 12
+      longitud_base = 13
+      str = " " + str if str.length < (longitud_base - 1)
       str.each_char.each_with_index.inject(0) do |total, (ch, i)|
         total + (longitud_base - i) * tabla_digito_verificador[ch]
       end
     end
 
     def residuo_digito_verificador(total)
+      modulo_base = 11
       residuo = total % modulo_base
       if residuo == 0
         '0'
@@ -68,14 +70,6 @@ module Identificamex
       else
         (modulo_base - residuo).to_s
       end
-    end
-
-    def longitud_base
-     @longitud_base ||= 13
-    end
-
-    def modulo_base
-      longitud_base - 2
     end
 
     def tabla_conversiones
