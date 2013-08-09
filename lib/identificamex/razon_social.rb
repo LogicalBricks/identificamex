@@ -3,7 +3,7 @@ module Identificamex
     include Mayusculas
 
     def initialize(razon_social)
-      @razon_social = mayusculas(razon_social)
+      @razon_social = normalizar(razon_social)
     end
 
     def siglas
@@ -15,6 +15,10 @@ module Identificamex
     end
 
     private
+
+    def normalizar(str)
+      eliminar_abreviaturas(mayusculas(str))
+    end
 
     def tres_letras_de_razon_social
       case palabras_a_considerar.count
@@ -43,42 +47,41 @@ module Identificamex
     end
 
     def palabras_razon_social
-      eliminar_abrebiaturas(@razon_social)
+      @razon_social
       .split
-      .map{|p| p.split('.') }
-      .flatten
       .select{|p| !palabras_especiales.member?(p) }
     end
 
-    def eliminar_abrebiaturas(str)
-      abreviaturas.each do |pf|
-        str.gsub!(pf, '')
+    def eliminar_abreviaturas(str)
+      abreviaturas.each do |a|
+        str = str.gsub(a, '')
       end
-      str
+      str.strip
     end
 
     def palabras_especiales
-      %w[DE Y DEL LOS LAS LA EL PARA]
+      %w[DE Y DEL LOS LAS LA EL PARA EN]
     end
 
     def abreviaturas
       [
         /COMPAÑIA/,
-        /CIA\./,
+        /CIA/,
         /\ASOCIEDAD/,
-        /\ASOC\./,
-        /S\.? EN N\.? ?C\.?\z/,
-        /S\.? EN C\.?\z/,
-        /S\.? DE R\.? ?L\.?\z/,
-        /S\.? EN C\.? POR A\.?\z/,
-        /S\.? ?A\.?\z/,
-        /S\.? ?A\.? DE C\.? ?V\.?\z/,
-        /S\.? ?N\.?C\.?\z/,
-        /S\.? ?C\.?\z/,
-        /A\.? ?C\.?\z/,
-        /A\.? EN P\.?\z/,
-        /S\.? ?C\.? ?L\.?\z/,
-        /S\.? ?C\.? ?S\.?\z/
+        /\ASOC/,
+        /S EN N ?C\z/,
+        /S EN C\z/,
+        /S DE R ?L\z/,
+        /S EN C POR A\z/,
+        /S ?A\z/,
+        /S ?A DE C ?V\z/,
+        /S ?N ?C\z/,
+        /S ?C\z/,
+        /A ?C\z/,
+        /A EN P\z/,
+        /S ?C ?L\z/,
+        /S ?C DE R ?L DE C ?V\z/,
+        /S ?C ?S\z/
       ]
     end
 
