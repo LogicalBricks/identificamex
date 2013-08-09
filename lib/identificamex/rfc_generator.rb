@@ -41,7 +41,7 @@ module Identificamex
 
     def build_nombre_completo(params)
       hash = params_for_nombre(params)
-      i = NombreCompleto.new(hash) if hash.values.any?(&:present?)
+      NombreCompleto.new(hash) if hash.values.any?(&:present?)
     end
 
     def build_razon_social(params)
