@@ -6,7 +6,8 @@ module Identificamex
 
     describe '#to_s' do
       it 'is razon_social' do
-        RazonSocial.new('Una razon social').to_s.must_equal 'UNA RAZON SOCIAL'
+        rs = RazonSocial.new('LogicalBricks Solutions S.C. de R.L de CV.')
+        rs.to_s.must_equal 'LOGICALBRICKS SOLUTIONS'
       end
     end
 
