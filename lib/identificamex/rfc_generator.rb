@@ -1,5 +1,3 @@
-require_relative 'palabra_inconveniente'
-
 module Identificamex
 
   # Clase responsable de generar un RFC. Recibe el rfc y un `hash` con los

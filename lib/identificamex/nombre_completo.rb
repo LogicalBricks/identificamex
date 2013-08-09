@@ -1,4 +1,5 @@
 require_relative 'normalizador_apellido'
+require_relative 'palabra_inconveniente'
 
 module Identificamex
   class NombreCompleto
