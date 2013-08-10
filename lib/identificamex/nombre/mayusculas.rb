@@ -1,5 +1,6 @@
 module Identificamex
   module Nombre
+
     module Mayusculas
       def mayusculas(str)
         return if str.nil?
@@ -8,8 +9,10 @@ module Identificamex
         .upcase
         .gsub(/ñ/, 'Ñ')
         .gsub(/,/, '')
-        .gsub(/\./, '')
         .gsub(/'/, '')
+        .gsub(/\./, ' ')
+        .squeeze(' ')
+        .strip
       end
 
       def hash_vocales
@@ -27,5 +30,6 @@ module Identificamex
                            'Ü' => 'U'}
       end
     end
+
   end
 end
