@@ -112,7 +112,7 @@ module Identificamex
         it 'ignores the dot and takes single letters' do
           generator = RfcGenerator.new(razon_social: 'U.S. Ruber Mexicana, S.A.',
                                        fecha_creacion: Date.new(1983, 03, 05))
-          generator.rfc.must_equal 'URM830305PM2'
+          generator.rfc.must_equal 'USR830305L44'
         end
 
         it 'takes the first letter from first word and two letters from second word' do
