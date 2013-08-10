@@ -1,5 +1,5 @@
 require_relative '../../test_helper'
-require_relative '../.././/lib/identificamex/nombre/razon_social'
+require_relative '../../../lib/identificamex/nombre/razon_social'
 
 module Identificamex
   module Nombre
@@ -7,9 +7,14 @@ module Identificamex
     describe RazonSocial do
 
       describe '#to_s' do
-        it 'is razon_social' do
+        it 'is razon_social (sin siglas de forma jurídica)' do
           rs = RazonSocial.new('LogicalBricks Solutions S.C. de R.L de CV.')
           rs.to_s.must_equal 'LOGICALBRICKS SOLUTIONS'
+        end
+
+        it 'is razon_social (abreviaturas sin puntos)' do
+          rs = RazonSocial.new('A.M. Relojería')
+          rs.to_s.must_equal 'A M RELOJERIA'
         end
       end
 
