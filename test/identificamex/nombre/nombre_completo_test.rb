@@ -6,9 +6,9 @@ module Identificamex
     describe NombreCompleto do
 
       describe '#to_s' do
-        it 'is (primer apellido segundo apellido y nombre)' do
-          params = {nombre: 'José Alfredo', primer_apellido: 'Martínez', segundo_apellido: 'López'}
-          nombre_completo = NombreCompleto.new(params).to_s.must_equal 'MARTINEZ LOPEZ JOSE ALFREDO'
+        it 'is (primer apellido segundo apellido y nombre) with no special characters' do
+          params = {nombre: 'José Alfredo', primer_apellido: "D'Angelo", segundo_apellido: 'López'}
+          nombre_completo = NombreCompleto.new(params).to_s.must_equal 'DANGELO LOPEZ JOSE ALFREDO'
         end
       end
 
