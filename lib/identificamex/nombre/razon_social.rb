@@ -71,19 +71,19 @@ module Identificamex
           /CIA/,
           /\ASOCIEDAD/,
           /\ASOC/,
-          /S EN N ?C\z/,
-          /S EN C\z/,
-          /S DE R ?L\z/,
-          /S EN C POR A\z/,
-          /S ?A\z/,
-          /S ?A DE C ?V\z/,
-          /S ?N ?C\z/,
-          /S ?C\z/,
-          /A ?C\z/,
-          /A EN P\z/,
-          /S ?C ?L\z/,
-          /S ?C DE R ?L DE C ?V\z/,
-          /S ?C ?S\z/
+          / S EN N ?C\z/,
+          / S EN C\z/,
+          / S DE R ?L\z/,
+          / S EN C POR A\z/,
+          / S ?A\z/,
+          / S ?A DE C ?V\z/,
+          / S ?N ?C\z/,
+          / S ?C\z/,
+          / A ?C\z/,
+          / A EN P\z/,
+          / S ?C ?L\z/,
+          / S ?C DE R ?L DE C ?V\z/,
+          / S ?C ?S\z/
         ]
       end
     end
