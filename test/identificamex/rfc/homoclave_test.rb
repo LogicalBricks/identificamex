@@ -1,5 +1,5 @@
 require_relative '../../test_helper'
-require_relative '../....//lib/identificamex/rfc/homoclave'
+require_relative '../../../lib/identificamex/rfc/homoclave'
 
 module Identificamex
   module Rfc

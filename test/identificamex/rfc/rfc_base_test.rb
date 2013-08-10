@@ -1,5 +1,6 @@
 require_relative '../../test_helper'
 require_relative '../../../lib/identificamex/rfc/rfc_base'
+require_relative '../../../lib/identificamex/nombre/nombre_completo'
 
 module Identificamex
   module Rfc
@@ -7,7 +8,7 @@ module Identificamex
     describe RfcBase do
       context 'persona física' do
         it 'builds rfc base' do
-          nombre = NombreCompleto.new(
+          nombre = ::Identificamex::Nombre::NombreCompleto.new(
             nombre: 'Emma',
             primer_apellido: 'Gómez',
             segundo_apellido: 'Díaz'
