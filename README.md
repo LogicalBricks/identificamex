@@ -53,9 +53,11 @@ class Employee < ActiveRecord::Base
                                 primer_apellido: 'Barrios',
                                 segundo_apellido: 'Fernández',
                                 fecha_nacimiento: Date.new(1970, 12, 13)
+    # => true
 
     valid_rfc? 'APB830305QS6', razon_social: 'U.S. Ruber Mexicana, S.A.',
                                fecha_creacion: Date.new(1983, 03, 05)
+    # => false
   end
 end
 ```
