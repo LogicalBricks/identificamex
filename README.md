@@ -26,6 +26,8 @@ O instálala por ti mismo de esta manera:
 
 ## Uso
 
+### Formato
+
 Agrega las validaciones de formato a los campos correspondientes.
 
 ```ruby
@@ -71,7 +73,7 @@ posteriormente, al igual que la generación de la CURP_
 El método `valid_rfc?` es auxiliar y ha funcionado con los casos que he
 probado, pero no hay garantía que funcione en todos los casos, así que debe
 usarse con precaución. Si detectas algún caso en el que no funciona, agrega
-un _issue_ para corregirlo.
+un _issue_ para tratar de corregirlo.
 
 ## Contribución
 
