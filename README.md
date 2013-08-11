@@ -66,9 +66,9 @@ Por ejemplo: 'Cyber @ SA de CV', 'Cooperativa 5 de mayo SC',
 'Estudio Siglo XXI SA'. Es una funcionalidad que se piensa incluir
 posteriormente, al igual que la generación de la CURP_
 
-El método `valid_rfc?` es auxiliar y me ha funcionado con los casos que he
+El método `valid_rfc?` es auxiliar y ha funcionado con los casos que he
 probado, pero no hay garantía que funcione en todos los casos, así que debe
-usarse con precaución. Si hay algún caso en el que no funcione, pueden agregar
+usarse con precaución. Si detectas algún caso en el que no funciona, agrega
 un _issue_ para corregirlo.
 
 ## Contribución
