@@ -29,11 +29,45 @@ O instálala por ti mismo de esta manera:
 Agrega las validaciones de formato a los campos correspondientes.
 
 ```ruby
-class Employee < ActiveRecor::Base
+class Employee < ActiveRecord::Base
   validates :curp, presence: true, curp_format: true
   validates :rfc, rfc_format: { force_homoclave: true }, allow_blank: true
 end
 ```
+
+En el caso del RFC, es posible verificar no sólo el formato sino también el
+contenido. Para esto, se debe utilizar el método `valid_rfc?`. Este método se
+encuentra en el módulo `Identificamex::Methods` y no se agrega
+automáticamente a la base de ActiveRecord o ActiveModel, por lo que es
+necesario agregarlo manualmente.
+
+```ruby
+class Employee < ActiveRecord::Base
+
+  include Identificamex::Methods
+
+  def un_metodo
+    valid_rfc? 'BAFJ701213SBA', nombre: 'Juan',
+                                primer_apellido: 'Barrios',
+                                segundo_apellido: 'Fernández',
+                                fecha_nacimiento: Date.new(1970, 12, 13)
+
+    valid_rfc? 'APB830305QS6', razon_social: 'U.S. Ruber Mexicana, S.A.',
+                               fecha_creacion: Date.new(1983, 03, 05)
+  end
+end
+```
+
+NOTA: _Esta versión todavía no valida correctamente el RFC de personas
+morales que incluyan números o caracteres especiales en su razón social.
+Por ejemplo: 'Cyber @ SA de CV', 'Cooperativa 5 de mayo SC',
+'Estudio Siglo XXI SA'. Es una funcionalidad que se piensa incluir
+posteriormente, al igual que la generación de la CURP_
+
+El método `valid_rfc?` es auxiliar y me ha funcionado con los casos que he
+probado, pero no hay garantía que funcione en todos los casos, así que debe
+usarse con precaución. Si hay algún caso en el que no funcione, pueden agregar
+un _issue_ para corregirlo.
 
 ## Contribución
 
