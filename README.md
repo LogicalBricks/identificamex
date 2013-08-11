@@ -35,6 +35,8 @@ class Employee < ActiveRecord::Base
 end
 ```
 
+### valid_rfc?
+
 En el caso del RFC, es posible verificar no sólo el formato sino también el
 contenido. Para esto, se debe utilizar el método `valid_rfc?`. Este método se
 encuentra en el módulo `Identificamex::Methods` y no se agrega
