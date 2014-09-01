@@ -23,11 +23,7 @@ module Identificamex
       private
 
       def nombre_aceptado
-        nombres.find{|nombre| no_ignorado?(nombre) } if nombres.count > 1
-      end
-
-      def no_ignorado?(nombre)
-        !nombres_ignorados.member?(nombre)
+        (nombres - nombres_ignorados).first
       end
 
       def primer_nombre
