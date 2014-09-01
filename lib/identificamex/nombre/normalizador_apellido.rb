@@ -1,9 +1,9 @@
-require_relative 'normalizador_cadena'
+require_relative 'normalizador_nombre'
 
 module Identificamex
   module Nombre
 
-    # Clase que hereda de `NormalizadorCadena` y define los nombres a ignorar
+    # Clase que hereda de `NormalizadorNombre` y define los nombres a ignorar
     # como `%w[DE LA DEL LOS]` que son los únicos que se ignoran para los
     # apellidos.
     #
@@ -17,7 +17,7 @@ module Identificamex
     #
     #     NormalizadorApellido.new('Pérez').normalizar
     #     # => PEREZ
-    class NormalizadorApellido < NormalizadorCadena
+    class NormalizadorApellido < NormalizadorNombre
 
       private
 
