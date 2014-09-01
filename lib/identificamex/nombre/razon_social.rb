@@ -49,16 +49,11 @@ module Identificamex
       end
 
       def palabras_razon_social
-        @razon_social
-        .split
-        .select{|p| !palabras_especiales.member?(p) }
+        @razon_social.split - palabras_especiales
       end
 
       def eliminar_abreviaturas(str)
-        abreviaturas.each do |a|
-          str = str.gsub(a, '')
-        end
-        str.strip
+        abreviaturas.inject(str) { |str, a| str.gsub(a, '') }.strip
       end
 
       def palabras_especiales
