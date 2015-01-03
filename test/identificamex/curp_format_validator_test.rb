@@ -19,6 +19,14 @@ describe 'curp validator' do
     it 'accepts curp (digito anti-duplicado alfanumérico)' do
       model(curp: 'AAAA111111HDFBBBA1').must_be :valid?
     end
+
+    it 'accepts generic curp (for man)' do
+      model(curp: 'XEXX010101MNEXXXA8').must_be :valid?
+    end
+
+    it 'accepts generic curp (for woman)' do
+      model(curp: 'XEXX010101HNEXXXA4').must_be :valid?
+    end
   end # with valid data
 
   describe 'with invalid data' do
