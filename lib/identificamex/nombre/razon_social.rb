@@ -44,7 +44,7 @@ module Identificamex
 
       def siglas_palabra_unica
         letras = palabras_a_considerar.first[0, 3]
-        letras = letras + ("X" * (3 - letras.length)) if letras.length < 3
+        letras += "X" * (3 - letras.length) if letras.length < 3
         letras
       end
 
