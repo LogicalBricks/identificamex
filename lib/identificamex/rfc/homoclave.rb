@@ -5,6 +5,7 @@ module Identificamex
 
       def initialize(rfc_base)
         @rfc_base = rfc_base
+        @tabla_conversiones = nil
       end
 
       def siglas
