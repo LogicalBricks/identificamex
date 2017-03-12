@@ -14,7 +14,9 @@ para el resto de validadores de Rails.
 
 Agrega esta línea al archivo Gemfile de tu aplicación
 
-    gem 'identificamex'
+```ruby
+gem 'identificamex'
+```
 
 Y después ejecuta:
 
